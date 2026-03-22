@@ -1,6 +1,12 @@
 # @ktmage/spekta-annotator-rspec
 
-RSpec / Capybara で書かれたテストファイル (`*_spec.rb`) を解析し、Spekta アノテーションを自動生成するプラグイン。
+Spekta の RSpec Annotator プラグイン。RSpec / Capybara テストファイルから `[spekta:*]` コメントを自動生成する。
+
+## インストール
+
+```bash
+npm install @ktmage/spekta-annotator-rspec
+```
 
 ## 機能
 
@@ -30,8 +36,8 @@ RSpec / Capybara で書かれたテストファイル (`*_spec.rb`) を解析し
 ## 設定例
 
 ```yaml
-annotators:
-  - name: rspec
+annotator:
+  "@ktmage/spekta-annotator-rspec":
     page_from: filename
 ```
 
@@ -41,3 +47,7 @@ annotators:
 |---|---|
 | `manual` (デフォルト) | `page` アノテーションを自動生成しない。ソース内のコメント等で手動指定する想定。 |
 | `filename` | トップレベルの `feature` / `describe` で、ファイル名から `page` を自動生成する。`login_spec.rb` → `login`、`user_profile_spec.rb` → `user-profile`（`_spec` 除去、`_` を `-` に変換）。 |
+
+## ライセンス
+
+[MIT](LICENSE)
