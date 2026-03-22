@@ -12,6 +12,10 @@ Spekta の RSpec Annotator プラグイン。RSpec / Capybara テストファイ
 <a id="english"></a>
 ## English
 
+> [!CAUTION]
+> **Disclaimer:**
+> This project is experimental. It is provided "as-is" without warranty of any kind. APIs and output format may change without notice. Use at your own risk.
+
 ### Features
 
 Recognizes the following RSpec / Capybara syntax and generates annotations.
@@ -70,6 +74,10 @@ annotator:
 
 <a id="japanese"></a>
 ## 日本語
+
+> [!CAUTION]
+> **免責事項：**
+> 本プロジェクトは実験的な取り組みです。いかなる保証もなく「現状のまま」提供されます。API や出力形式は予告なく変更される可能性があります。ご利用は自己責任でお願いいたします。
 
 ### 機能
 
