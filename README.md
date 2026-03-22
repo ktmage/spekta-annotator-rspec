@@ -1,18 +1,77 @@
 # @ktmage/spekta-annotator-rspec
 
+Spekta RSpec Annotator plugin. Auto-generates `[spekta:*]` annotations from RSpec / Capybara tests.
+
 Spekta の RSpec Annotator プラグイン。RSpec / Capybara テストファイルから `[spekta:*]` コメントを自動生成する。
 
-## インストール
+## Table of Contents / 目次
 
-> npm パッケージは未公開です。現在は [Spekta モノレポ](https://github.com/ktmage/spekta) のサブモジュールとして利用できます。
+- [English](#english)
+- [日本語](#japanese)
 
-npm 公開後は以下でインストールできるようになる予定です。
+<a id="english"></a>
+## English
+
+### Features
+
+Recognizes the following RSpec / Capybara syntax and generates annotations.
+
+**Structure (section)**
+
+| Syntax | Annotation |
+|---|---|
+| `feature "..." do` / `describe "..." do` | `section` (also `page` when top-level with `page_from: filename`) |
+| `context "..." do` | `section` |
+| `scenario "..." do` / `it "..." do` | `section` + step collection starts |
+
+**Steps (step)**
+
+Recognizes Capybara DSL inside `scenario` / `it` blocks.
+
+| DSL | Generated Step |
+|---|---|
+| `visit` | Open page |
+| `fill_in "X", with: "Y"` | Enter "Y" in "X" |
+| `click_on "X"` | Click "X" |
+| `select "V", from: "X"` | Select "V" from "X" |
+| `expect(page).to have_content "X"` | "X" is displayed |
+| `expect(page).not_to have_content "X"` | "X" is not displayed |
+
+### Installation
+
+> npm package is not yet published. Currently available as a submodule of the [Spekta monorepo](https://github.com/ktmage/spekta).
+
+After npm publication:
 
 ```bash
 npm install @ktmage/spekta-annotator-rspec
 ```
 
-## 機能
+### Configuration
+
+```yaml
+annotator:
+  "@ktmage/spekta-annotator-rspec":
+    page_from: filename
+```
+
+### page_from
+
+| Value | Behavior |
+|---|---|
+| `manual` (default) | Does not auto-generate `page` annotations. Pages are specified manually via comments. |
+| `filename` | Auto-generates `page` from the top-level `feature` / `describe`. `login_spec.rb` → `login`, `user_profile_spec.rb` → `user-profile`. |
+
+### License
+
+[MIT](LICENSE)
+
+---
+
+<a id="japanese"></a>
+## 日本語
+
+### 機能
 
 以下の RSpec / Capybara の構文を認識してアノテーションを生成する。
 
@@ -37,7 +96,17 @@ npm install @ktmage/spekta-annotator-rspec
 | `expect(page).to have_content "X"` | 「X」が表示される |
 | `expect(page).not_to have_content "X"` | 「X」が表示されない |
 
-## 設定例
+### インストール
+
+> npm パッケージは未公開です。現在は [Spekta モノレポ](https://github.com/ktmage/spekta) のサブモジュールとして利用できます。
+
+npm 公開後は以下でインストールできるようになる予定です。
+
+```bash
+npm install @ktmage/spekta-annotator-rspec
+```
+
+### 設定例
 
 ```yaml
 annotator:
@@ -45,13 +114,13 @@ annotator:
     page_from: filename
 ```
 
-## page_from
+### page_from
 
 | 値 | 動作 |
 |---|---|
 | `manual` (デフォルト) | `page` アノテーションを自動生成しない。ソース内のコメント等で手動指定する想定。 |
 | `filename` | トップレベルの `feature` / `describe` で、ファイル名から `page` を自動生成する。`login_spec.rb` → `login`、`user_profile_spec.rb` → `user-profile`（`_spec` 除去、`_` を `-` に変換）。 |
 
-## ライセンス
+### ライセンス
 
 [MIT](LICENSE)
