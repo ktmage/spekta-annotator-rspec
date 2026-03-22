@@ -4,6 +4,10 @@ Spekta の RSpec Annotator プラグイン。RSpec / Capybara テストファイ
 
 ## インストール
 
+> npm パッケージは未公開です。現在は [Spekta モノレポ](https://github.com/ktmage/spekta) のサブモジュールとして利用できます。
+
+npm 公開後は以下でインストールできるようになる予定です。
+
 ```bash
 npm install @ktmage/spekta-annotator-rspec
 ```
